@@ -36,7 +36,7 @@ public class Lanes : MonoBehaviour
 
        if(LaneSwitch == 2)
         {
-            xPos.position.x = 15.71978;
+            //xPos.position.x = 15.71978;
         }
     }
 }
