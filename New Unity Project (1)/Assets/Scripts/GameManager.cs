@@ -6,11 +6,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] ObjectPool pickupPool;
     [SerializeField] ObjectPool obstaclePool;
-<<<<<<< Updated upstream
-=======
     [SerializeField] ObjectPool segmentPool;
     [SerializeField] Vector3[] segmentStartSpawn;
->>>>>>> Stashed changes
 
     private Transform lastSegment;
     public static GameManager Instance;
@@ -28,8 +25,6 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-<<<<<<< Updated upstream
-=======
 
     private void Start()
     {
@@ -59,5 +54,4 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     //Back in 2020, myself and David van Rijn worked on Endless Runner. Code similarties are likely!
->>>>>>> Stashed changes
 }
