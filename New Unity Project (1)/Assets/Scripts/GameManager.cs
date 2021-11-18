@@ -6,7 +6,13 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] ObjectPool pickupPool;
     [SerializeField] ObjectPool obstaclePool;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] ObjectPool segmentPool;
+    [SerializeField] Vector3[] segmentStartSpawn;
+>>>>>>> Stashed changes
 
+    private Transform lastSegment;
     public static GameManager Instance;
 
     #region Singleton in awake
@@ -22,4 +28,36 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+<<<<<<< Updated upstream
+=======
+
+    private void Start()
+    {
+        //Spawns the first few segments
+        for (int i = 0; i < segmentStartSpawn.Length; i++)
+        {
+            GameObject _segment = segmentPool.GetPooledObject(transform.position, Quaternion.identity);
+            _segment.transform.position = segmentStartSpawn[i];
+
+            lastSegment = _segment.transform;
+        }
+    }
+
+    #region segment spawn/despawn
+    //When called, spawns next segment at location
+    public void NextSegment()
+    {
+        Vector3 _spawnPos = lastSegment.position + Vector3.forward * 15f; //fix hardcode if necessary
+        GameObject _segment = segmentPool.GetPooledObject(_spawnPos, Quaternion.identity);
+        lastSegment = _segment.transform;
+    }
+
+    //When called, returns segment
+    public void RemoveSegment(PoolItem _poolitem)
+    {
+        _poolitem.ReturnToPool();
+    }
+    #endregion
+    //Back in 2020, myself and David van Rijn worked on Endless Runner. Code similarties are likely!
+>>>>>>> Stashed changes
 }
