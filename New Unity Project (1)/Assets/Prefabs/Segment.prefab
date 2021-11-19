@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3052636765883670756}
   - component: {fileID: 6487773459486441468}
   - component: {fileID: 7020824176153351423}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,3 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
+  removeLoc: -15
