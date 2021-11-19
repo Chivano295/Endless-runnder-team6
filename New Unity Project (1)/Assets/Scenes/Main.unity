@@ -920,6 +920,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pauze panel
       objectReference: {fileID: 0}
+    - target: {fileID: 9183346648741937003, guid: 185c4bb4c9cda084abf822670e122cfd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9183346650104723207, guid: 185c4bb4c9cda084abf822670e122cfd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
