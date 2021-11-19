@@ -54,12 +54,5 @@ public class AnimController : MonoBehaviour
             menubuttons[1].SetActive(false);
             menubuttons[2].SetActive(false);
         }
-
-
-
-
-    }
-    
-
-    
+    }  
 }
