@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] ObjectPool segmentPool;
     [SerializeField] Vector3[] segmentStartSpawn;
 
+    [SerializeField] Vector2 timeClamp;
+    private float spawnTime;
+    private float timer;
+
     private Transform lastSegment;
     public static GameManager Instance;
 
@@ -28,6 +32,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //Randomizes time between two points
+        timer = Random.Range(timeClamp.x, timeClamp.y);
+
         //Spawns the first few segments
         for (int i = 0; i < segmentStartSpawn.Length; i++)
         {
@@ -35,6 +42,28 @@ public class GameManager : MonoBehaviour
             _segment.transform.position = segmentStartSpawn[i];
 
             lastSegment = _segment.transform;
+        }
+    }
+
+    //Handles obstacle and pickup spawning
+    private void Update()
+    {
+        spawnTime += Time.deltaTime;
+        if (spawnTime >= timer)
+        {
+            float _randomNumber = Random.Range(1, 11); //randomizes whether obstacle or pickup spawns
+            if (_randomNumber <= 8)
+            {
+                GameObject _obstacle = obstaclePool.GetPooledObject(transform.position, Quaternion.identity);
+                _obstacle.transform.position = new Vector3(Random.Range(-6f, 6f), 1f, 25f);
+            }
+            else
+            {
+                GameObject _pickup = pickupPool.GetPooledObject(transform.position, Quaternion.identity);
+                _pickup.transform.position = new Vector3(Random.Range(-6f, 6f), 1.5f, 25f);
+            }
+            spawnTime = 0;
+            timer = Random.Range(timeClamp.x, timeClamp.y);
         }
     }
 
