@@ -29,6 +29,5 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         rBody.MovePosition(rBody.position + new Vector3(horizontal, vertical, 0f) * playerSpeed * Time.fixedDeltaTime);
-
     }
 }
