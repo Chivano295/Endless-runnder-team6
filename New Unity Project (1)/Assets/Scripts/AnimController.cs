@@ -7,6 +7,7 @@ public class AnimController : MonoBehaviour
     private Animator anim;
     private int animint = 0;
     public GameObject[] menubuttons = new GameObject[3];
+    private float time = 1f;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -14,6 +15,7 @@ public class AnimController : MonoBehaviour
         menubuttons[1].SetActive(false);
         menubuttons[0].SetActive(false);
         menubuttons[2].SetActive(false);
+       
     }
 
     // Update is called once per frame
@@ -23,13 +25,13 @@ public class AnimController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             animint = animint + 1;
+           
         }
         anim.SetInteger("Camerapos", (animint));
-        if(animint >= 4)
+        if (animint >= 4)
         {
-            animint = 1;       
+            animint = 1;
         }
-
         if (animint == 0)
         {
             menubuttons[0].SetActive(true);
@@ -54,5 +56,11 @@ public class AnimController : MonoBehaviour
             menubuttons[1].SetActive(false);
             menubuttons[2].SetActive(false);
         }
-    }  
+    }
+   
+    
+      
+    
+    
+   
 }
