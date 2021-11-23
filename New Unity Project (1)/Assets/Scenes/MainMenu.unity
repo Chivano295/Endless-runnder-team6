@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee23ac7e4058e342be9bdcc2054f3a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShopUI: {fileID: 0}
 --- !u!1 &241445651
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +678,7 @@ GameObject:
   - component: {fileID: 353446739}
   - component: {fileID: 353446738}
   - component: {fileID: 353446737}
+  - component: {fileID: 353446740}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -786,6 +788,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353446735}
   m_CullTransparentMesh: 1
+--- !u!114 &353446740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353446735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee23ac7e4058e342be9bdcc2054f3a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShopUI: {fileID: 0}
 --- !u!1 &368133127
 GameObject:
   m_ObjectHideFlags: 0
