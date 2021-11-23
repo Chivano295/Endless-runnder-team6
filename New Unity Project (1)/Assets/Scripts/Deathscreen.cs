@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,17 +5,23 @@ public class Deathscreen : MonoBehaviour
 {
     public static bool gameIsPaused = false;
     public GameObject Deathmenu;
-    public bool death = false;
+    public static Deathscreen Instance;
 
+    #region Singleton in awake
 
-    private void Update()
+    private void Awake()
     {
-        if(death == true)
+        if (Instance != null && Instance != this) //singleton
         {
-            Pause();
-        }                             
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
-    void Pause()
+    #endregion
+    public void Pause()
     {
         Deathmenu.SetActive(true);
         Time.timeScale = 0f;

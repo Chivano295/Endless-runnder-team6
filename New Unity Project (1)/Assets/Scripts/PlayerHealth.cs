@@ -53,7 +53,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (startHP <= 0)
         {
-            Debug.Log("Dead");
+            Deathscreen.Instance.Pause();
         }
     }
     //Adapted from Muddy Wolf Dynamic Heart System tutorial on YouTube
