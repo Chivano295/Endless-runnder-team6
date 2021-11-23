@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 ScoreManager.Instance.IncreaseScore(10);
             }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                StartCoroutine(PlayerHealth.Instance.FlashCo());
+            }
         }
     }
 

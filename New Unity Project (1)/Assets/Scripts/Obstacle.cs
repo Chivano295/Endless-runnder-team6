@@ -22,6 +22,7 @@ public class Obstacle : PoolItem
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerHealth.Instance.DamagePlayer(1);
+            PlayerHealth.Instance.StartRoutine();
             ReturnToPool();
         }
     }
