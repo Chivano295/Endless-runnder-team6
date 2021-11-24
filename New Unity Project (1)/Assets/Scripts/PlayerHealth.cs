@@ -16,6 +16,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] CapsuleCollider playerCollider;
     [SerializeField] Renderer playerRend;
 
+    [Header("Misc Settings")]
+    [SerializeField] AudioClip audioDamage;
+
     public static PlayerHealth Instance;
 
     #region Singleton in awake
@@ -44,7 +47,6 @@ public class PlayerHealth : MonoBehaviour
         {
             startHP -= _dmg;
             heartManager.DrawHitpoint(startHP, maxHP);
-            //invincible and flickering
             DeadPlayer();
         }
     }
@@ -74,6 +76,7 @@ public class PlayerHealth : MonoBehaviour
     }
      public void StartRoutine()
     {
+        AudioManager.Instance.PlayClip(audioDamage);
         StartCoroutine(FlashCo());
     }
     //Adapted from Mister Taft Creates Invulnerability Frames tutorial on YouTube
