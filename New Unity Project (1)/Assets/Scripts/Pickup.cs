@@ -4,6 +4,7 @@ public class Pickup : PoolItem
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float removeLoc;
+    [SerializeField] AudioClip audioPickup;
 
     void Update()
     {
@@ -23,8 +24,9 @@ public class Pickup : PoolItem
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            ReturnToPool();
+            AudioManager.Instance.PlayClip(audioPickup);
             ScoreManager.Instance.IncreaseScore(10);
+            ReturnToPool();
         }
     }
 }
