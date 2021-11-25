@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7a274e52189d74987163305239c71c, type: 3}
   m_Name: Gekozen Ship
   m_EditorClassIdentifier: 
-  chosenShip: 0
+  player: 0

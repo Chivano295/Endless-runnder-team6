@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy Data", menuName = "Create enemy data", order = 0)]
 public class CurrentShip : ScriptableObject
 {
-    public int chosenShip = 0;
-
+    
+    public int player = 0;
 
 }
