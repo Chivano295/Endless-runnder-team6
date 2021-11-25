@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     private float primaryTimer;
     private float secondaryTimer;
 
+    [Header("Difficulty Settings")]
+    [SerializeField] public float globalMoveSpeed;
+    [SerializeField] public float globalSegmentSpeed;
+    [SerializeField] public float globalSpeedIncrease;
+    [SerializeField] public float globalSegmentIncrease;
+
     private Transform lastSegment;
     public static GameManager Instance;
 
@@ -75,8 +81,6 @@ public class GameManager : MonoBehaviour
             obstacleSpawnTime = 0;
             primaryTimer = Random.Range(timeClampObstacle.x, timeClampObstacle.y);
         }
-
-
 
         //Spawns towers
         if (towerSpawnTime >= secondaryTimer)

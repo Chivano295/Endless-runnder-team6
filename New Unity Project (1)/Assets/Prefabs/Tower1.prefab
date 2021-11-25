@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7711036413273935744}
   - component: {fileID: 8328958076809906662}
   - component: {fileID: 2073777798304577583}
-  - component: {fileID: -4426693577620148342}
+  - component: {fileID: -7947721083209173558}
   m_Layer: 0
   m_Name: Tower1
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-4426693577620148342
+--- !u!114 &-7947721083209173558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4783640102803236763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d538f5bf823db94bb598d1b11e661ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b035b73b43030d4aa61842880317d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 9

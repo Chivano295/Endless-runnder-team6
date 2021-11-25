@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Segment : PoolItem
 {
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float removeLoc;
 
     private Renderer getRend;
@@ -15,7 +14,7 @@ public class Segment : PoolItem
     //Moves the segment at given speed and check if it reaches a certain position
     private void Update()
     {
-        float offset = Time.time * moveSpeed;
+        float offset = Time.time * (GameManager.Instance.globalSegmentSpeed + Time.time * GameManager.Instance.globalSegmentIncrease);
         getRend.material.SetTextureOffset("_MainTex", new Vector2(0, -offset));
 
         //Disabled due to alternate method

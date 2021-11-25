@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class Obstacle : PoolItem
 {
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float removeLoc;
 
     //Returns the obstacle to objectpool upon reaching a certain position
     private void Update()
     {
-        transform.position += new Vector3(0, 0, -moveSpeed * Time.deltaTime);
+        transform.position += new Vector3(0, 0, -(GameManager.Instance.globalMoveSpeed + GameManager.Instance.globalSpeedIncrease * Time.time) * Time.deltaTime);
 
         if (transform.position.z <= removeLoc)
         {

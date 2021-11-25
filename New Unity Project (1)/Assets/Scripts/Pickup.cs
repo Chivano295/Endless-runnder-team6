@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Pickup : PoolItem
 {
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float removeLoc;
     [SerializeField] AudioClip audioPickup;
 
@@ -11,7 +10,7 @@ public class Pickup : PoolItem
         //Thanks to Luke Armstrong's roll-a-ball tutorial
         //Makes the pickup rotate and returns the obstacle to objectpool upon reaching a certain position
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
-        transform.position += new Vector3(0, 0, -moveSpeed * Time.deltaTime);
+        transform.position += new Vector3(0, 0, -(GameManager.Instance.globalMoveSpeed + GameManager.Instance.globalSpeedIncrease * Time.time) * Time.deltaTime);
 
         if (transform.position.z <= removeLoc)
         {
