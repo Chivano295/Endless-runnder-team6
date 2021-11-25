@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Pool Settings")]
     [SerializeField] ObjectPool pickupPool;
     [SerializeField] ObjectPool obstaclePool;
     [SerializeField] ObjectPool segmentPool;
     [SerializeField] Vector3[] segmentStartSpawn;
 
+    [Header("Obstacle/Pickup Spawn Settings")]
     [SerializeField] Vector2 timeClamp;
     private float spawnTime;
     private float timer;
+
+    //Courtesy of David van Rijn
+    [Header("Difficulty Settings")]
+    [SerializeField] float increaseWait; //Amount of time before difficulty increases
+    [SerializeField] float difficultyIncreaseRate; //Amount of time to before difficulty increases
+    [SerializeField] float difficultyObstacleRate; //The amount of which obstacle spawn increases
+    [SerializeField] float increasingSpeed = 5f; //The amount of which speed increases
+
+    public delegate void DifficultyEvent(float increase);
+    public event DifficultyEvent difficultyEvent;
 
     private Transform lastSegment;
     public static GameManager Instance;
@@ -65,6 +77,12 @@ public class GameManager : MonoBehaviour
             spawnTime = 0;
             timer = Random.Range(timeClamp.x, timeClamp.y);
         }
+
+        difficultyIncreaseRate += Time.deltaTime;
+        if (difficultyIncreaseRate >= increaseWait)
+        {
+            difficultyIncreaseRate = 0f;
+        }
     }
 
     #region segment spawn/despawn
@@ -80,6 +98,14 @@ public class GameManager : MonoBehaviour
     public void RemoveSegment(PoolItem _poolitem)
     {
         _poolitem.ReturnToPool();
+    }
+    #endregion
+
+    #region Handles increasing difficulty
+    public void CallDifficultyIncrease(float amount)
+    {
+        difficultyEvent.Invoke(amount);
+        increasingSpeed += amount;
     }
     #endregion
     //Back in 2020, myself and David van Rijn worked on Endless Runner. Code similarties are likely!

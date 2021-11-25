@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
         rBody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    #region Debug mode in Update
+    // Debug mode in Update
     void Update()
     {
         if (debugMode)
@@ -28,11 +29,18 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+#endregion
 
+    #region Player movement
+    //Handles player movements
     private void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        rBody.MovePosition(rBody.position + new Vector3(horizontal, vertical, 0f) * playerSpeed * Time.fixedDeltaTime);
+        float _horizontal = Input.GetAxis("Horizontal");
+        float _vertical = Input.GetAxis("Vertical");
+        Vector3 _newpos = rBody.position + new Vector3(_horizontal, _vertical, 0f) * playerSpeed * Time.fixedDeltaTime;
+        _newpos.x = Mathf.Clamp(_newpos.x, -6f, 6f);
+        rBody.MovePosition(_newpos);
+        //Thanks Rene for the assist with the clamp
     }
+    #endregion
 }
