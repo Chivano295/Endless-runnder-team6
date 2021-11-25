@@ -1031,6 +1031,7 @@ MonoBehaviour:
   pickupPool: {fileID: 1774156112}
   obstaclePool: {fileID: 212476325}
   segmentPool: {fileID: 1652787371}
+  towerPools: []
   segmentStartSpawn:
   - {x: 0, y: 0, z: 75}
   - {x: 0, y: 0, z: 60}
@@ -1039,11 +1040,8 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 15}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: -15}
-  timeClamp: {x: 0.1, y: 2}
-  increaseWait: 0
-  difficultyIncreaseRate: 0
-  difficultyObstacleRate: 0
-  increasingSpeed: 5
+  timeClampObstacle: {x: 0, y: 2}
+  timeClampTower: {x: 0, y: 0}
 --- !u!4 &1455203331
 Transform:
   m_ObjectHideFlags: 0
@@ -1286,6 +1284,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8af77114ff5c9614787e7632ec3ee0a1, type: 2}
   player: {fileID: 724016100}
   shopData: {fileID: 11400000, guid: f31f96693aec48441b3f2c3ae1fe8cec, type: 2}
+  materialselect: {fileID: 0}
 --- !u!4 &1517918134
 Transform:
   m_ObjectHideFlags: 0
