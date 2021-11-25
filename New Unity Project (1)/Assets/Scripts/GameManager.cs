@@ -8,22 +8,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] ObjectPool pickupPool;
     [SerializeField] ObjectPool obstaclePool;
     [SerializeField] ObjectPool segmentPool;
+    [SerializeField] ObjectPool[] towerPools;
     [SerializeField] Vector3[] segmentStartSpawn;
 
     [Header("Obstacle/Pickup Spawn Settings")]
-    [SerializeField] Vector2 timeClamp;
-    private float spawnTime;
-    private float timer;
-
-    //Courtesy of David van Rijn
-    [Header("Difficulty Settings")]
-    [SerializeField] float increaseWait; //Amount of time before difficulty increases
-    [SerializeField] float difficultyIncreaseRate; //Amount of time to before difficulty increases
-    [SerializeField] float difficultyObstacleRate; //The amount of which obstacle spawn increases
-    [SerializeField] float increasingSpeed = 5f; //The amount of which speed increases
-
-    public delegate void DifficultyEvent(float increase);
-    public event DifficultyEvent difficultyEvent;
+    [SerializeField] Vector2 timeClampObstacle; //Clamps time for obstacle and pickup spawn
+    [SerializeField] Vector2 timeClampTower; //Clamps time for tower spawn
+    private float obstacleSpawnTime; //obstacle and pickup spawn time
+    private float towerSpawnTime; //tower spawn time
+    private float primaryTimer;
+    private float secondaryTimer;
 
     private Transform lastSegment;
     public static GameManager Instance;
@@ -45,7 +39,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //Randomizes time between two points
-        timer = Random.Range(timeClamp.x, timeClamp.y);
+        primaryTimer = Random.Range(timeClampObstacle.x, timeClampObstacle.y);
+        secondaryTimer = Random.Range(timeClampTower.x, timeClampTower.y);
 
         //Spawns the first few segments
         for (int i = 0; i < segmentStartSpawn.Length; i++)
@@ -60,8 +55,11 @@ public class GameManager : MonoBehaviour
     //Handles obstacle and pickup spawning
     private void Update()
     {
-        spawnTime += Time.deltaTime;
-        if (spawnTime >= timer)
+        obstacleSpawnTime += Time.deltaTime;
+        towerSpawnTime += Time.deltaTime;
+
+        //Spawns obstacles and pickups
+        if (obstacleSpawnTime >= primaryTimer)
         {
             float _randomNumber = Random.Range(1, 11); //randomizes whether obstacle or pickup spawns
             if (_randomNumber <= 8)
@@ -74,15 +72,29 @@ public class GameManager : MonoBehaviour
                 GameObject _pickup = pickupPool.GetPooledObject(transform.position, Quaternion.identity);
                 _pickup.transform.position = new Vector3(Random.Range(-6f, 6f), 1.5f, 25f);
             }
-            spawnTime = 0;
-            timer = Random.Range(timeClamp.x, timeClamp.y);
+            obstacleSpawnTime = 0;
+            primaryTimer = Random.Range(timeClampObstacle.x, timeClampObstacle.y);
         }
 
-        difficultyIncreaseRate += Time.deltaTime;
-        if (difficultyIncreaseRate >= increaseWait)
+
+
+        //Spawns towers
+        if (towerSpawnTime >= secondaryTimer)
         {
-            difficultyIncreaseRate = 0f;
+            RandomTower(towerPools[Random.Range(0, towerPools.Length)]);
+
+            towerSpawnTime = 0;
+            secondaryTimer = Random.Range(timeClampTower.x, timeClampTower.y);
         }
+    }
+
+    private void RandomTower(ObjectPool _pool)
+    {
+        GameObject _towerLeft = _pool.GetPooledObject(transform.position, Quaternion.identity);
+        _towerLeft.transform.position = new Vector3(Random.Range(-25f, -10.5f), 0.65f, 25f);
+
+        GameObject _towerRight = _pool.GetPooledObject(transform.position, Quaternion.identity);
+        _towerRight.transform.position = new Vector3(Random.Range(25f, 10.5f), 0.65f, 25f);
     }
 
     #region segment spawn/despawn
@@ -98,14 +110,6 @@ public class GameManager : MonoBehaviour
     public void RemoveSegment(PoolItem _poolitem)
     {
         _poolitem.ReturnToPool();
-    }
-    #endregion
-
-    #region Handles increasing difficulty
-    public void CallDifficultyIncrease(float amount)
-    {
-        difficultyEvent.Invoke(amount);
-        increasingSpeed += amount;
     }
     #endregion
     //Back in 2020, myself and David van Rijn worked on Endless Runner. Code similarties are likely!

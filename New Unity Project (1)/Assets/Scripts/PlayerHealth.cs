@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float flashDur;
     [SerializeField] Color flashColour;
     [SerializeField] Color regColour;
-    [SerializeField] CapsuleCollider playerCollider;
+    [SerializeField] BoxCollider playerCollider;
     [SerializeField] Renderer playerRend;
 
     [Header("Misc Settings")]
