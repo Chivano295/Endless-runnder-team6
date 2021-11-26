@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
             if (_randomNumber <= 8)
             {
                 GameObject _obstacle = obstaclePool.GetPooledObject(transform.position, Quaternion.identity);
-                _obstacle.transform.position = new Vector3(Random.Range(-6f, 6f), 1f, 25f);
+                _obstacle.transform.position = new Vector3(Random.Range(-6f, 6f), 0.5f, 25f);
             }
             else
             {
