@@ -95,10 +95,10 @@ public class GameManager : MonoBehaviour
     private void RandomTower(ObjectPool _pool)
     {
         GameObject _towerLeft = _pool.GetPooledObject(transform.position, Quaternion.identity);
-        _towerLeft.transform.position = new Vector3(Random.Range(-25f, -10.5f), 0.65f, 25f);
+        _towerLeft.transform.position = new Vector3(Random.Range(-25f, -10.5f), 0.65f, 40f);
 
         GameObject _towerRight = _pool.GetPooledObject(transform.position, Quaternion.identity);
-        _towerRight.transform.position = new Vector3(Random.Range(25f, 10.5f), 0.65f, 25f);
+        _towerRight.transform.position = new Vector3(Random.Range(25f, 10.5f), 0.65f, 40f);
     }
 
     #region segment spawn/despawn
