@@ -23,4 +23,8 @@ public class ChangeScene : MonoBehaviour
         ShopUI.SetActive(false);
         MainUI.SetActive(true);
     }
+    public void quitgame()
+    {
+        Application.Quit();
+    }
 }
