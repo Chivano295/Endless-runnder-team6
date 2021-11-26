@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimController : MonoBehaviour
 {
     private Animator anim;
-    private int animint = 0;
+    [SerializeField]private int animint = 0;
     public GameObject[] menubuttons = new GameObject[3];
     private float time = 1f;
     void Start()
